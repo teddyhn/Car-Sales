@@ -1,3 +1,5 @@
+import { ADD_ITEM } from '../actions';
+
 const initialState = {
     additionalPrice: 0,
     car: {
@@ -16,7 +18,23 @@ const initialState = {
 };
 
 export const featureReducer = (state = initialState, action) => {
+    console.log(state.car.features)
     switch (action.type) {
+        case ADD_ITEM:
+            return {
+                ...state,
+                car: {
+                    ...state.car,
+                    features: state.store.map(item => {
+                        if (item.id === action.payload) {
+                            return {
+                                ...state.car.features,
+                                item
+                            }
+                        } else return { ...state.car.features }
+                    })
+                }
+            };
         default:
             return state;
     }

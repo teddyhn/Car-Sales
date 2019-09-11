@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { addItem } from './actions';
+
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
@@ -11,8 +13,9 @@ const App = (props) => {
     // dispatch an action here to remove an item
   };
 
-  const buyItem = item => {
-    props.addItem(item);
+  const buyItem = (e, id) => {
+    e.preventDefault();
+    props.addItem(id);
   };
 
   return (
