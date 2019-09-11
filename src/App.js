@@ -13,9 +13,9 @@ const App = (props) => {
     // dispatch an action here to remove an item
   };
 
-  const buyItem = (e, id) => {
+  const buyItem = (e, index) => {
     e.preventDefault();
-    props.addItem(id);
+    props.addItem(index);
   };
 
   return (

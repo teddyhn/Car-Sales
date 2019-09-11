@@ -21,18 +21,15 @@ export const featureReducer = (state = initialState, action) => {
     console.log(state.car.features)
     switch (action.type) {
         case ADD_ITEM:
+            console.log(action.payload)
             return {
                 ...state,
                 car: {
                     ...state.car,
-                    features: state.store.map(item => {
-                        if (item.id === action.payload) {
-                            return {
-                                ...state.car.features,
-                                item
-                            }
-                        } else return { ...state.car.features }
-                    })
+                    features: [
+                        ...state.car.features,
+                        state.store[action.payload]
+                    ]
                 }
             };
         default:

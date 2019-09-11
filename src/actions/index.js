@@ -1,4 +1,4 @@
 export const ADD_ITEM = 'ADD_ITEM';
-export const addItem = id => {
-    return { type: ADD_ITEM, payload: id }
+export const addItem = index => {
+    return { type: ADD_ITEM, payload: index }
 }
