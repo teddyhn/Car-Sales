@@ -18,25 +18,30 @@ const initialState = {
 };
 
 export const featureReducer = (state = initialState, action) => {
-    console.log(state.car.features)
-    console.log(action.payload)
+    console.log(state.car.features);
     switch (action.type) {
         case ADD_ITEM:
-            return {
-                ...state,
-                car: {
-                    ...state.car,
-                    features: [
-                        ...state.car.features,
-                        action.payload
-                    ]
-                }
-            };
+            let index = state.car.features.findIndex(e => e.id === action.payload.id);
+
+            if (index === -1) {
+                return {
+                    ...state,
+                    car: {
+                        ...state.car,
+                        price: state.car.price + action.payload.price,
+                        features: [
+                                ...state.car.features,
+                                action.payload
+                            ]
+                    }
+                };
+            } else return state;
         case REMOVE_ITEM:
             return {
                 ...state,
                 car: {
                     ...state.car,
+                    price: state.car.price - action.payload.price,
                     features: state.car.features.filter(option => option.id !== action.payload.id)
                 }
             }
@@ -44,3 +49,14 @@ export const featureReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+// return {
+//     ...state,
+//     car: {
+//         ...state.car,
+//         features: [
+//                 ...state.car.features,
+//                 action.payload
+//             ]
+//     }
+// };
